@@ -276,12 +276,12 @@ const Converter = () => {
     setResult(result);
   }, [amount, fromCurrency.price, toCurrency.price]);
   return (
-    <div className="container mx-auto px-4">
-      <div className="wrapper rounded-lg shadow-lg p-6">
+    <div className="container mx-auto px-4 ">
+      <div className="wrapper rounded-lg shadow-lg p-6 w-2/4 bg-white">
         <div className="heading text-2xl font-semibold mb-5">
           Convert Currency
         </div>
-        <FormControl className="flex flex-col gap-5">
+        <FormControl className="flex flex-col gap-5 w-full">
           <FormGroup className="form-group">
             <InputLabel
               error={errors.amount ? true : false}
@@ -348,7 +348,7 @@ const Converter = () => {
               id="fromCurrency"
               select
               fullWidth
-              label="From"
+              label="To"
               InputLabelProps={{ shrink: true }}
               margin="normal"
               value={toCurrency.currency}
