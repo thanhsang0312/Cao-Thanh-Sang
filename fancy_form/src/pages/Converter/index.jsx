@@ -1,6 +1,12 @@
 import React, { useEffect } from "react";
 import SwapVertIcon from "@mui/icons-material/SwapVert";
-import { Button, IconButton, MenuItem, TextField } from "@mui/material";
+import {
+  Button,
+  CircularProgress,
+  IconButton,
+  MenuItem,
+  TextField,
+} from "@mui/material";
 import FormControl from "@mui/material/FormControl";
 import FormGroup from "@mui/material/FormGroup";
 import InputAdornment from "@mui/material/InputAdornment";
@@ -227,6 +233,8 @@ const Converter = () => {
     price: 0,
   });
   const [toError, setToError] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const debounceResult = useDebounce(result, 800);
 
   const {
     register,
@@ -265,6 +273,10 @@ const Converter = () => {
     if (fromCurrency.currency !== "" && toCurrency.currency !== "") {
       console.log("Converted");
     }
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+    }, 800);
   };
 
   useEffect(() => {
@@ -375,9 +387,13 @@ const Converter = () => {
             <div className="current-amount font-semibold text-sm text-[#5C667B]">
               {amount} {fromCurrency?.name} =
             </div>
-            <div className="result-amount font-semibold text-3xl">
-              {result} {toCurrency?.name}
-            </div>
+            {loading ? (
+              <CircularProgress />
+            ) : (
+              <div className="result-amount font-semibold text-3xl">
+                {debounceResult} {toCurrency?.name}
+              </div>
+            )}
           </div>
           <Button
             variant="contained"
