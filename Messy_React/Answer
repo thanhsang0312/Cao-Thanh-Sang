@@ -1,0 +1,35 @@
+1. In TypeScript, we can use `extends` to determine another `interface` has attributes of valid interface.
+
+\*Origin:
+
+interface FormattedWalletBalance {
+currency: string;
+amount: number;
+formatted: string;
+}
+
+\*Fix:
+
+interface FormattedWalletBalance extends WalletBalance {
+formatted: string;
+}
+
+2. In line 39, using undefined variable `lhsPriority`. It should be `balancePriority`
+
+3. In line 38, 46 and 47, I can see all of variable access to attribute `blockchain`. So I thinh `interface` `WalletBalance` was missed an attribute is `blockchain`.
+   \*Origin:
+
+   interface WalletBalance {
+   currency: string;
+   amount: number;
+   }
+
+   \*Fix:
+
+   interface WalletBalance {
+   currency: string;
+   amount: number;
+   blockchain: string;
+   }
+
+4. In line 68, using `index` of `map` function for `key` props, quite ok, but It can get trouble if data change. Should use a unique key i.e: `balance.currency`
