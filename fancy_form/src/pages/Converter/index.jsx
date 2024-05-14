@@ -331,6 +331,7 @@ const Converter = () => {
                     loading="lazy"
                     width="20"
                     alt=""
+                    className="mr-0.5"
                   />
                   {option.currency}
                 </MenuItem>
