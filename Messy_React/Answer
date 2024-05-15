@@ -72,4 +72,6 @@
 
 7. Should be create a functional component `WalletRow` which have props: amount, usdValue, formattedAmount. It's helpful for control the component
 
+8. `classes` was not declared in any scope, we also do not have any attribute `row` [in line 67]
+
 \*A refactored version of the code in solution.tsx file
