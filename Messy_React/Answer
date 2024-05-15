@@ -2,34 +2,74 @@
 
 \*Origin:
 
-interface FormattedWalletBalance {
-currency: string;
-amount: number;
-formatted: string;
-}
+<!--
+    interface FormattedWalletBalance {
+        currency: string;
+        amount: number;
+        formatted: string;
+    }
+-->
 
 \*Fix:
 
-interface FormattedWalletBalance extends WalletBalance {
-formatted: string;
-}
+<!--
+    interface FormattedWalletBalance extends WalletBalance {
+        formatted: string;
+    }
+-->
 
 2. In line 39, using undefined variable `lhsPriority`. It should be `balancePriority`
 
-3. In line 38, 46 and 47, I can see all of variable access to attribute `blockchain`. So I thinh `interface` `WalletBalance` was missed an attribute is `blockchain`.
+3. We don't need to re-calculate `sortedBalances` when `prices` is changed. So, in dependencies of useMemo only need `balance`
+
+4. I can optimize some line of this code:
+
+   <!--
+   if(lhsPriority > -99) {
+        if (balance.amount <= 0) {
+            retunr true;
+        }
+    }
+
+   =>
+
+   return balancePriority > -99 && balance.amount <= 0;
+   -->
+
+    <!-- 
+        if (leftPriority > rightPriority) {
+            return -1;
+        } else if (rightPriority > leftPriority) {
+            return 1;
+        }
+   
+        => 
+   
+        return rightPriority - leftPriority
+     -->
+
+5. In line 38, 46 and 47, I can see all of variable access to attribute `blockchain`. So I thinh `interface` `WalletBalance` was missed an attribute is `blockchain`.
    \*Origin:
 
-   interface WalletBalance {
-   currency: string;
-   amount: number;
-   }
+   <!--
+        interface WalletBalance {
+            currency: string;
+            amount: number;
+        }
+    -->
 
    \*Fix:
 
-   interface WalletBalance {
-   currency: string;
-   amount: number;
-   blockchain: string;
-   }
+   <!--
+        interface WalletBalance {
+            currency: string;
+            amount: number;
+            blockchain: string;
+        }
+   -->
 
-4. In line 68, using `index` of `map` function for `key` props, quite ok, but It can get trouble if data change. Should use a unique key i.e: `balance.currency`
+6. In line 68, using `index` of `map` function for `key` props, quite ok, but It can get trouble if data change. Should use a unique key i.e: `balance.currency`
+
+7. Should be create a functional component `WalletRow` which have props: amount, usdValue, formattedAmount. It's helpful for control the component
+
+\*A refactored version of the code in solution.tsx file
