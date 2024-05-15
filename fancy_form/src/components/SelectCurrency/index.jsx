@@ -1,11 +1,9 @@
 import Autocomplete from "@mui/material/Autocomplete";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
-import React, { useState } from "react";
+import React from "react";
 
 const SelectCurrency = ({ sendCurrency }) => {
-  const [value, setValue] = useState();
-  const [inputValue, setInputValue] = useState("");
   const myCurrency = [
     {
       currency: "BLUR",
@@ -210,14 +208,6 @@ const SelectCurrency = ({ sendCurrency }) => {
   return (
     <>
       <Autocomplete
-        value={value}
-        onChange={(e, newValue) => {
-          setValue(newValue);
-        }}
-        inputValue={inputValue}
-        onInputChange={(e, newInputValue) => {
-          setInputValue(newInputValue);
-        }}
         id="currency-select"
         sx={{ width: 300 }}
         options={myCurrency}

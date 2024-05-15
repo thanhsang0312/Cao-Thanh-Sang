@@ -18,6 +18,7 @@ import { useState } from "react";
 import { regex } from "../../constant/regex";
 import useDebounce from "../../hooks/useDebounce";
 import { convertCurrency } from "../../util/convertCurrency";
+import SelectCurrency from "../../components/SelectCurrency";
 
 const Converter = () => {
   const myCurrency = [
@@ -325,6 +326,7 @@ const Converter = () => {
           <FormGroup className="form-group">
             <TextField
               id="fromCurrency"
+              className="selectCurrency"
               select
               fullWidth
               label="From"
@@ -336,7 +338,11 @@ const Converter = () => {
               helperText={fromError ? "Please select a currency" : ""}
             >
               {myCurrency.map((option, index) => (
-                <MenuItem key={index} value={option.price}>
+                <MenuItem
+                  key={index}
+                  value={option.price}
+                  className="itemCurrency"
+                >
                   <img
                     src={`${option.image}`}
                     srcSet={`${option.image} 2x`}
@@ -359,6 +365,7 @@ const Converter = () => {
           <FormGroup className="form-group">
             <TextField
               id="fromCurrency"
+              className="selectCurrency"
               select
               fullWidth
               label="To"
@@ -370,7 +377,11 @@ const Converter = () => {
               helperText={toError ? "Please select a currency" : ""}
             >
               {myCurrency.map((option, index) => (
-                <MenuItem key={index} value={option.price}>
+                <MenuItem
+                  key={index}
+                  value={option.price}
+                  className="itemCurrency"
+                >
                   <img
                     src={`${option.image}`}
                     srcSet={`${option.image} 2x`}

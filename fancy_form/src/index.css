@@ -21,3 +21,11 @@ body {
 .button-swap {
   border: 1px solid #dddddd !important;
 }
+
+.selectCurrency {
+  position: relative !important;
+}
+
+.css-3dzjca-MuiPaper-root-MuiPopover-paper-MuiMenu-paper {
+  max-height: 25% !important;
+}
